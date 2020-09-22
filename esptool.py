@@ -776,7 +776,10 @@ class ESPLoader(object):
     def flash_md5sum(self, addr, size):
         # the MD5 command returns additional bytes in the standard
         # command reply slot
-        timeout = timeout_per_mb(MD5_TIMEOUT_PER_MB, size)
+        # MEGS - 10/09
+        #timeout = timeout_per_mb(MD5_TIMEOUT_PER_MB, size)
+        timeout = 60.0
+        #############
         res = self.check_command('calculate md5sum', self.ESP_SPI_FLASH_MD5, struct.pack('<IIII', addr, size, 0, 0),
                                  timeout=timeout)
 
